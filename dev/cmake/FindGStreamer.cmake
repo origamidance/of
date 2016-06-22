@@ -76,7 +76,7 @@ endmacro()
 # 1.1. Find headers and libraries
 FIND_GSTREAMER_COMPONENT(GSTREAMER gstreamer-1.0 gst/gst.h gstreamer-1.0)
 FIND_GSTREAMER_COMPONENT(GSTREAMER_BASE gstreamer-base-1.0 gst/base/gstadapter.h gstbase-1.0)
-
+set(GSTREAMER_INCLUDE_DIRS ${GSTREAMER_INCLUDE_DIRS} /usr/lib/gstreamer-1.0/include)
 # 1.2. Check GStreamer version
 if (GSTREAMER_INCLUDE_DIRS)
     if (EXISTS "${GSTREAMER_INCLUDE_DIRS}/gst/gstversion.h")
