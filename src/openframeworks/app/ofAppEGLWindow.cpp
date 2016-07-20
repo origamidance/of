@@ -707,7 +707,7 @@ bool ofAppEGLWindow::createSurface() {
 			eglSurface, // read surface
 			eglContext);
 
-	if((unsigned int)eglContext == EGL_FALSE) {
+	if(eglContext == EGL_FALSE) {
 		EGLint error = eglGetError();
 		ofLogError("ofAppEGLWindow") << "createSurface(): couldn't making current surface: " << eglErrorString(error);
 		return false;
@@ -962,11 +962,8 @@ void ofAppEGLWindow::setWindowRect(const ofRectangle& requestedWindowRect) {
 					&dst_rect,
 					&src_rect,
 					0, // mask (we aren't changing it here)
-#ifdef USE_DISPMANX_TRANSFORM_T
 					(DISPMANX_TRANSFORM_T)0);
-#else
-			(VC_IMAGE_TRANSFORM_T)0);
-#endif
+
 
 			vc_dispmanx_update_submit_sync(dispman_update);
 
@@ -1187,11 +1184,8 @@ void ofAppEGLWindow::setWindowPosition(int x, int y){
 				&dst_rect,
 				NULL,
 				0,
-#ifdef USE_DISPMANX_TRANSFORM_T
-(DISPMANX_TRANSFORM_T)0);
-#else
-	(VC_IMAGE_TRANSFORM_T)0);
-#endif
+				(DISPMANX_TRANSFORM_T)0);
+
 
 vc_dispmanx_update_submit_sync(dispman_update);
 

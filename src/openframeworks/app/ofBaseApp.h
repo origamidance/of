@@ -4,11 +4,7 @@
 #include "ofEvents.h"
 #include "ofBaseTypes.h"
 
-class ofBaseApp
-#ifndef TARGET_NO_SOUND
-: public ofBaseSoundInput, public ofBaseSoundOutput
-#endif
-{
+class ofBaseApp : public ofBaseSoundInput, public ofBaseSoundOutput{
 
 	public:
         ofBaseApp() {
@@ -42,7 +38,7 @@ class ofBaseApp
 		virtual void mouseReleased(int x, int y, int button ){}
 
 		/// \brief Called on the active window when the mouse wheel is scrolled
-		virtual void mouseScrolled( float x, float y ){}
+		virtual void mouseScrolled(int x, int y, float scrollX, float scrollY ){}
 
 		/// \brief Called on the active window when the mouse cursor enters the
 		/// window area
@@ -108,7 +104,7 @@ class ofBaseApp
 			mouseReleased(mouse.x,mouse.y,mouse.button);
 		}
 		virtual void mouseScrolled( ofMouseEventArgs & mouse ){
-			mouseScrolled(mouse.x,mouse.y);
+			mouseScrolled(mouse.x, mouse.y, mouse.scrollX, mouse.scrollY);
 		}
 		virtual void mouseEntered( ofMouseEventArgs & mouse ){
 			mouseEntered(mouse.x,mouse.y);
